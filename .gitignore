@@ -3,3 +3,4 @@
 /bazel-*
 # Bazelisk version file
 .bazelversion
+MODULE.bazel.lock

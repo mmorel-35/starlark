@@ -6,7 +6,7 @@ py_library(
         "testenv.py",
     ],
     imports = [
-      ".",
+        ".",
     ],
 )
 
@@ -25,16 +25,23 @@ py_library(
                 binary_rule,
                 test_file,
             ],
+            main = "starlark_test.py",
             deps = [
                 ":testenv",
             ],
-            main = "starlark_test.py",
         )
-        for test_file in glob([
-            "testdata/java/*", "testdata/go/*", "testdata/rust/*"
-        ], exclude = ["**/.*"])
+        for test_file in glob(
+            [
+                "testdata/java/*",
+                "testdata/go/*",
+                "testdata/rust/*",
+            ],
+            exclude = ["**/.*"],
+        )
     ]
-    for impl, binary_rule in [("java", "@io_bazel//src/main/java/net/starlark/java/cmd:starlark"),
-                              ("go", "@net_starlark_go//cmd/starlark:starlark"),
-                              ("rust", "@starlark-rust//:starlark")]
+    for impl, binary_rule in [
+        ("java", "@io_bazel//src/main/java/net/starlark/java/cmd:starlark"),
+        ("go", "@net_starlark_go//cmd/starlark:starlark"),
+        ("rust", "@starlark-rust//:starlark"),
+    ]
 ]
